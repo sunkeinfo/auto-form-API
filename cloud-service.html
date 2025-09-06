@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>免费云服务表单 - JimForm</title>
+    <meta name="description" content="JimForm免费云服务表单，注册即送200次API调用额度，无需自建服务器，直接使用我们的云服务">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero .subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #10b981;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #10b981;
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        /* Code blocks */
+        .code-container {
+            background: #2d3748;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 2rem;
+            position: relative;
+            overflow-x: auto;
+        }
+
+        .code-container pre {
+            color: #e2e8f0;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .code-header {
+            background: #10b981;
+            margin: -2rem -2rem 1rem;
+            padding: 1rem 2rem;
+            border-radius: 15px 15px 0 0;
+            color: white;
+            font-weight: 600;
+        }
+
+        /* Register Section */
+        .register {
+            padding: 80px 0;
+            background: white;
+        }
+
+        /* Footer */
+        footer {
+            background: #2d3748;
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #10b981;
+        }
+
+        .footer-section a {
+            color: #cbd5e0;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <i class="fas fa-cloud"></i> JimForm 云服务表单
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fas fa-home"></i> 首页</a></li>
+                <li><a href="#register">立即注册</a></li>
+                <li><a href="docs.html"><i class="fas fa-book"></i> 文档</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> 联系</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1><i class="fas fa-cloud"></i> 免费云服务表单</h1>
+            <p class="subtitle">无需自建服务器，注册即送200次API调用额度</p>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem;">
+                零配置 • 即开即用 • 完全免费 • 支持跨域调用
+            </p>
+            <a href="#register" class="btn btn-primary" style="font-size: 1.3rem; padding: 15px 40px;">
+                <i class="fas fa-rocket"></i> 立即免费注册
+            </a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">🚀 云服务表单优势</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>即开即用</h3>
+                    <p>注册后立即获得API密钥，无需安装任何插件或配置服务器，直接开始使用。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <h3>200次免费额度</h3>
+                    <p>注册即送200次API调用额度，足够测试和小型项目使用，完全免费。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3>无需自建服务器</h3>
+                    <p>使用我们的云服务器和网关，无需购买服务器、安装WordPress或配置SMTP。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3>完美支持静态网站</h3>
+                    <p>完美支持Netlify、Vercel、GitHub Pages等静态网站托管平台。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-magic"></i>
+                    </div>
+                    <h3>零配置表单</h3>
+                    <p>任何HTML表单都能直接使用，无需预设字段结构，自动处理所有表单字段。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>高可用性保障</h3>
+                    <p>专业的云基础设施，99.9%可用性保障，自动备份和故障恢复。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Usage Example -->
+    <section style="padding: 80px 0; background: #f8f9fa;">
+        <div class="container">
+            <h2 class="section-title">💻 使用示例</h2>
+            <p style="text-align: center; font-size: 1.2rem; margin-bottom: 2rem;">
+                只需3步，即可让任何HTML表单支持邮件发送
+            </p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 3rem;">
+                <div style="text-align: center; padding: 2rem; background: white; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
+                    <div style="width: 60px; height: 60px; background: #10b981; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: bold; margin: 0 auto 1rem;">1</div>
+                    <h3>注册获取API密钥</h3>
+                    <p>填写下方注册表单，立即获得API密钥</p>
+                </div>
+                <div style="text-align: center; padding: 2rem; background: white; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
+                    <div style="width: 60px; height: 60px; background: #10b981; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: bold; margin: 0 auto 1rem;">2</div>
+                    <h3>设置表单action</h3>
+                    <p>将表单action指向我们的API地址</p>
+                </div>
+                <div style="text-align: center; padding: 2rem; background: white; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
+                    <div style="width: 60px; height: 60px; background: #10b981; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: bold; margin: 0 auto 1rem;">3</div>
+                    <h3>立即生效</h3>
+                    <p>表单提交后自动发送邮件，完全自动化</p>
+                </div>
+            </div>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <i class="fas fa-code"></i> HTML 表单示例
+                </div>
+                <pre><code>&lt;form action="https://api.jimform.com/send/YOUR_API_KEY" method="POST"&gt;
+    &lt;input type="text" name="姓名" required&gt;
+    &lt;input type="email" name="email" required&gt;
+    &lt;input type="tel" name="电话"&gt;
+    &lt;textarea name="留言内容" required&gt;&lt;/textarea&gt;
+    
+    &lt;!-- 可选：指定接收邮箱 --&gt;
+    &lt;input type="hidden" name="_to_email" value="contact@yourcompany.com"&gt;
+    &lt;!-- 可选：提交成功后重定向 --&gt;
+    &lt;input type="hidden" name="_redirect_url" value="https://example.com/thank-you"&gt;
+    
+    &lt;button type="submit"&gt;提交&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- Register Section -->
+    <section id="register" class="register">
+        <div class="container">
+            <h2 class="section-title">🎯 立即注册免费云服务表单</h2>
+            <div style="max-width: 600px; margin: 0 auto;">
+                <div class="feature-card" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; margin-bottom: 2rem;">
+                    <div class="feature-icon" style="color: white;">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <h3 style="color: white; font-size: 1.8rem;">注册即送 200 次 API 调用额度</h3>
+                    <p style="font-size: 1.2rem;">
+                        完全免费，无需信用卡，注册后立即可用
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3 style="margin-bottom: 2rem;">
+                        <i class="fas fa-user-plus"></i> 快速注册
+                    </h3>
+                    <form action="https://api.jimform.com/register" method="POST" style="max-width: 500px; margin: 0 auto;">
+                        <div style="margin-bottom: 1rem;">
+                            <input type="email" name="email" placeholder="请输入您的邮箱地址" required 
+                                   style="width: 100%; padding: 12px; border: 2px solid #e9ecef; border-radius: 8px; font-size: 1rem;">
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <input type="text" name="name" placeholder="您的姓名或公司名称" required 
+                                   style="width: 100%; padding: 12px; border: 2px solid #e9ecef; border-radius: 8px; font-size: 1rem;">
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <select name="usage" required 
+                                    style="width: 100%; padding: 12px; border: 2px solid #e9ecef; border-radius: 8px; font-size: 1rem;">
+                                <option value="">请选择使用场景</option>
+                                <option value="静态网站">静态网站表单处理</option>
+                                <option value="企业官网">企业官网联系表单</option>
+                                <option value="第三方集成">第三方系统集成</option>
+                                <option value="其他">其他用途</option>
+                            </select>
+                        </div>
+                        <div style="margin-bottom: 2rem;">
+                            <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; color: #666;">
+                                <input type="checkbox" name="agree" required>
+                                我同意 <a href="#" style="color: #10b981;">服务条款</a> 和 <a href="#" style="color: #10b981;">隐私政策</a>
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%; font-size: 1.2rem; padding: 15px; background: #10b981; color: white;">
+                            <i class="fas fa-rocket"></i> 立即注册获取API密钥
+                        </button>
+                    </form>
+                    <p style="margin-top: 1.5rem; color: #666; font-size: 0.9rem;">
+                        <i class="fas fa-info-circle"></i> 注册后将立即发送API密钥和使用文档到您的邮箱
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-cloud"></i> JimForm 云服务表单</h3>
+                    <p>无需自建服务器的表单处理解决方案</p>
+                    <p>让表单处理变得简单高效</p>
+                </div>
+                <div class="footer-section">
+                    <h3>快速链接</h3>
+                    <a href="index.html">返回首页</a>
+                    <a href="#register">立即注册</a>
+                    <a href="docs.html">技术文档</a>
+                    <a href="contact.html">联系我们</a>
+                </div>
+                <div class="footer-section">
+                    <h3>服务优势</h3>
+                    <p>• 200次免费API调用</p>
+                    <p>• 无需自建服务器</p>
+                    <p>• 支持跨域调用</p>
+                    <p>• 高可用性保障</p>
+                </div>
+                <div class="footer-section">
+                    <h3>适用场景</h3>
+                    <p>• 静态网站表单处理</p>
+                    <p>• 企业官网联系表单</p>
+                    <p>• 第三方系统集成</p>
+                    <p>• 任何表单处理需求</p>
+                </div>
+            </div>
+            <div style="border-top: 1px solid #4a5568; padding-top: 2rem; margin-top: 2rem;">
+                <p>&copy; 2025 JimForm.com - 免费云服务表单</p>
+                <p style="margin-top: 0.5rem; opacity: 0.7;">
+                    <i class="fas fa-heart" style="color: #e53e3e;"></i> 
+                    让表单处理变得简单 • 支持跨域调用 • 完全免费使用
+                </p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

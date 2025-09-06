@@ -396,10 +396,10 @@
                 <i class="fas fa-paper-plane"></i> JimForm
             </div>
             <ul class="nav-links">
-                <li><a href="#features">功能特性</a></li>
+                <li><a href="cloud-service.html"><i class="fas fa-cloud"></i> 云服务表单</a></li>
+                <li><a href="#download">插件下载</a></li>
                 <li><a href="docs.html"><i class="fas fa-book"></i> 文档</a></li>
                 <li><a href="contact.html"><i class="fas fa-envelope"></i> 联系</a></li>
-                <li><a href="#download">下载</a></li>
             </ul>
         </nav>
     </header>
@@ -413,12 +413,18 @@
                 <div class="highlight">
                     <i class="fas fa-bolt"></i> 无需预设计表单结构，任何HTML表单都能直接使用！
                 </div>
+                <div class="highlight" style="background: rgba(16, 185, 129, 0.2); margin-bottom: 1rem;">
+                    <i class="fas fa-cloud"></i> 新增：免费云服务表单 • 注册即送200次API调用额度
+                </div>
                 <p style="font-size: 1.1rem; margin-bottom: 2rem;">
-                    革命性的表单处理方案 • 支持跨域调用 • 不局限于本站使用 • 任何外部网站都可调用
+                    革命性的表单处理方案 • 支持跨域调用 • 提供免费云服务表单 • 无需自建服务器
                 </p>
                 <div class="cta-buttons">
-                    <a href="#download" class="btn btn-primary">
-                        <i class="fas fa-download"></i> 立即下载
+                    <a href="cloud-service.html" class="btn btn-primary">
+                        <i class="fas fa-cloud"></i> 云服务表单
+                    </a>
+                    <a href="#download" class="btn btn-secondary">
+                        <i class="fas fa-download"></i> 插件下载
                     </a>
                     <a href="docs.html" class="btn btn-secondary">
                         <i class="fas fa-book"></i> 技术文档
@@ -475,6 +481,27 @@
                     <h3>安全可靠</h3>
                     <p>支持CORS域名限制，防火墙白名单，数据验证和清理，确保安全性。</p>
                 </div>
+                <div class="feature-card scroll-animate">
+                    <div class="feature-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3>免费云服务表单</h3>
+                    <p>无需自建服务器，注册即可获得200次免费API调用额度，直接使用我们的云服务。</p>
+                </div>
+                <div class="feature-card scroll-animate">
+                    <div class="feature-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>即开即用</h3>
+                    <p>注册账号后立即获得API密钥，无需安装配置，直接调用云端API接口。</p>
+                </div>
+                <div class="feature-card scroll-animate">
+                    <div class="feature-icon">
+                        <i class="fas fa-download"></i>
+                    </div>
+                    <h3>开源插件</h3>
+                    <p>提供免费WordPress插件下载，适合需要自建服务器的用户自托管使用。</p>
+                </div>
             </div>
         </div>
     </section>
@@ -482,27 +509,63 @@
     <!-- How it Works -->
     <section id="how-it-works" class="how-it-works">
         <div class="container">
-            <h2 class="section-title scroll-animate">📋 使用方法（超简单）</h2>
-            <div class="steps">
-                <div class="step scroll-animate">
-                    <div class="step-number">1</div>
-                    <h3>安装插件</h3>
-                    <p>上传插件文件到WordPress，激活插件，配置接收邮箱和SMTP插件。</p>
+            <h2 class="section-title scroll-animate">📋 两种使用方式</h2>
+            
+            <!-- Cloud Service -->
+            <div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 2rem; border-radius: 15px; margin-bottom: 3rem;" class="scroll-animate">
+                <h3 style="color: white; text-align: center; font-size: 1.8rem; margin-bottom: 2rem;">
+                    <i class="fas fa-cloud"></i> 方式一：使用免费云服务表单（推荐）
+                </h3>
+                <div class="steps" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+                    <div class="step" style="color: white;">
+                        <div class="step-number" style="background: white; color: #10b981;">1</div>
+                        <h4 style="color: white;">注册账号</h4>
+                        <p>填写上方注册表单，获取API密钥和200次免费额度。</p>
+                    </div>
+                    <div class="step" style="color: white;">
+                        <div class="step-number" style="background: white; color: #10b981;">2</div>
+                        <h4 style="color: white;">设计表单</h4>
+                        <p>使用任意HTML表单，无需预设字段结构。</p>
+                    </div>
+                    <div class="step" style="color: white;">
+                        <div class="step-number" style="background: white; color: #10b981;">3</div>
+                        <h4 style="color: white;">调用API</h4>
+                        <p>将表单action设置为：https://api.jimform.com/send/您的密钥</p>
+                    </div>
+                    <div class="step" style="color: white;">
+                        <div class="step-number" style="background: white; color: #10b981;">4</div>
+                        <h4 style="color: white;">立即使用</h4>
+                        <p>无需安装任何插件，直接使用云端表单服务。</p>
+                    </div>
                 </div>
-                <div class="step scroll-animate">
-                    <div class="step-number">2</div>
-                    <h3>设计表单</h3>
-                    <p>使用任意HTML表单，无需预设字段结构，想要什么字段就设计什么字段。</p>
-                </div>
-                <div class="step scroll-animate">
-                    <div class="step-number">3</div>
-                    <h3>指向API</h3>
-                    <p>将表单action设置为API地址，格式：/wp-json/my-forms/v1/send/表单标识</p>
-                </div>
-                <div class="step scroll-animate">
-                    <div class="step-number">4</div>
-                    <h3>立即生效</h3>
-                    <p>所有表单字段自动通过邮件发送，支持重定向，完全自动化处理。</p>
+            </div>
+            
+            <!-- Self-hosted -->
+            <div style="background: #f8f9fa; padding: 2rem; border-radius: 15px; border: 2px solid #e9ecef;" class="scroll-animate">
+                <h3 style="text-align: center; font-size: 1.5rem; margin-bottom: 2rem; color: #495057;">
+                    <i class="fas fa-server"></i> 方式二：自建服务器使用WordPress插件
+                </h3>
+                <div class="steps">
+                    <div class="step scroll-animate">
+                        <div class="step-number">1</div>
+                        <h4>安装插件</h4>
+                        <p>在自己的WordPress服务器上上传插件文件，激活插件，配置接收邮箱和SMTP插件。</p>
+                    </div>
+                    <div class="step scroll-animate">
+                        <div class="step-number">2</div>
+                        <h4>设计表单</h4>
+                        <p>使用任意HTML表单，无需预设字段结构，想要什么字段就设计什么字段。</p>
+                    </div>
+                    <div class="step scroll-animate">
+                        <div class="step-number">3</div>
+                        <h4>指向API</h4>
+                        <p>将表单action设置为API地址，格式：/wp-json/my-forms/v1/send/表单标识</p>
+                    </div>
+                    <div class="step scroll-animate">
+                        <div class="step-number">4</div>
+                        <h4>立即生效</h4>
+                        <p>所有表单字段自动通过邮件发送，支持重定向，完全自动化处理。</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -515,11 +578,37 @@
             <p style="text-align: center; font-size: 1.1rem; margin-bottom: 2rem;">
                 任何HTML表单都可以直接使用，无需修改字段结构
             </p>
+            <!-- Cloud API Example -->
+            <div class="code-container scroll-animate" style="margin-bottom: 2rem;">
+                <div class="code-header" style="background: #10b981;">
+                    <i class="fas fa-cloud"></i> 云服务表单API调用示例（推荐）
+                </div>
+                <pre><code>&lt;!-- 使用云服务表单API，无需安装插件 --&gt;
+&lt;form action="https://api.jimform.com/send/YOUR_API_KEY" method="POST"&gt;
+    &lt;input type="text" name="姓名" required&gt;
+    &lt;input type="email" name="email" required&gt;
+    &lt;input type="tel" name="电话"&gt;
+    &lt;select name="咨询类型"&gt;
+        &lt;option value="产品咨询"&gt;产品咨询&lt;/option&gt;
+        &lt;option value="技术支持"&gt;技术支持&lt;/option&gt;
+    &lt;/select&gt;
+    &lt;textarea name="留言内容" required&gt;&lt;/textarea&gt;
+    
+    &lt;!-- 可选：提交成功后重定向 --&gt;
+    &lt;input type="hidden" name="_redirect_url" value="https://example.com/thank-you"&gt;
+    &lt;!-- 可选：指定接收邮箱 --&gt;
+    &lt;input type="hidden" name="_to_email" value="contact@yourcompany.com"&gt;
+    
+    &lt;button type="submit"&gt;提交&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+            </div>
+            
+            <!-- Self-hosted Example -->
             <div class="code-container scroll-animate">
                 <div class="code-header">
-                    <i class="fas fa-code"></i> HTML 表单示例
+                    <i class="fas fa-server"></i> 自建服务器WordPress插件示例
                 </div>
-                <pre><code>&lt;!-- 基础联系表单 --&gt;
+                <pre><code>&lt;!-- 使用自建的WordPress服务器 --&gt;
 &lt;form action="https://your-domain.com/wp-json/my-forms/v1/send/contact-form" method="POST"&gt;
     &lt;input type="text" name="姓名" required&gt;
     &lt;input type="email" name="email" required&gt;
@@ -549,6 +638,18 @@
     &lt;button type="submit"&gt;注册&lt;/button&gt;
 &lt;/form&gt;</code></pre>
             </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem;">
+                <div style="text-align: center; padding: 1rem; background: rgba(16, 185, 129, 0.1); border-radius: 8px;">
+                    <p style="font-size: 1.1rem; color: #10b981; font-weight: 600;">
+                        <i class="fas fa-cloud"></i> 云服务表单：注册即用，无需配置
+                    </p>
+                </div>
+                <div style="text-align: center; padding: 1rem; background: rgba(102, 126, 234, 0.1); border-radius: 8px;">
+                    <p style="font-size: 1.1rem; color: #667eea; font-weight: 600;">
+                        <i class="fas fa-server"></i> 自建服务器：完全控制，无限使用
+                    </p>
+                </div>
+            </div>
             <p style="text-align: center; margin-top: 2rem; font-size: 1.1rem; color: #667eea; font-weight: 600;">
                 <i class="fas fa-magic"></i> 所有字段都会自动发送到邮箱，无需预先配置！
             </p>
@@ -558,7 +659,39 @@
     <!-- Comparison -->
     <section class="comparison">
         <div class="container">
-            <h2 class="section-title scroll-animate">⚡ 为什么选择 JimForm？</h2>
+            <h2 class="section-title scroll-animate">⚡ 与竞争对手比较优势</h2>
+            
+            <!-- JimForm vs Competitors -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 3rem;">
+                <div class="feature-card scroll-animate" style="border-left: 4px solid #10b981;">
+                    <h4 style="color: #10b981;"><i class="fas fa-crown"></i> JimForm 独特优势</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li><i class="fas fa-check" style="color: #10b981;"></i> 免费云服务表单 + 开源插件</li>
+                        <li><i class="fas fa-check" style="color: #10b981;"></i> 零配置，任何HTML表单直接可用</li>
+                        <li><i class="fas fa-check" style="color: #10b981;"></i> 支持跨域调用，完美支持静态网站</li>
+                        <li><i class="fas fa-check" style="color: #10b981;"></i> 注册即送200次免费额度</li>
+                    </ul>
+                </div>
+                <div class="feature-card scroll-animate" style="border-left: 4px solid #f59e0b;">
+                    <h4 style="color: #f59e0b;"><i class="fas fa-exclamation-triangle"></i> Formspree/Netlify Forms</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li><i class="fas fa-times" style="color: #ef4444;"></i> 付费服务，免费额度极低</li>
+                        <li><i class="fas fa-times" style="color: #ef4444;"></i> 需要预先注册表单结构</li>
+                        <li><i class="fas fa-times" style="color: #ef4444;"></i> 不支持中文字段名</li>
+                        <li><i class="fas fa-times" style="color: #ef4444;"></i> 功能限制多</li>
+                    </ul>
+                </div>
+                <div class="feature-card scroll-animate" style="border-left: 4px solid #8b5cf6;">
+                    <h4 style="color: #8b5cf6;"><i class="fas fa-exclamation-triangle"></i> Contact Form 7</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li><i class="fas fa-times" style="color: #ef4444;"></i> 只能在WordPress内使用</li>
+                        <li><i class="fas fa-times" style="color: #ef4444;"></i> 不支持跨域调用</li>
+                        <li><i class="fas fa-times" style="color: #ef4444;"></i> 需要复杂的表单代码配置</li>
+                        <li><i class="fas fa-times" style="color: #ef4444;"></i> 静态网站无法使用</li>
+                    </ul>
+                </div>
+            </div>
+            
             <div class="comparison-grid">
                 <div class="comparison-card traditional scroll-animate">
                     <h3><i class="fas fa-times-circle"></i> 传统表单处理</h3>
@@ -586,16 +719,64 @@
         </div>
     </section>
 
+    <!-- Service Options -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title scroll-animate">🎯 选择适合您的服务</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-top: 3rem;">
+                <!-- Cloud Service -->
+                <div class="feature-card scroll-animate" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 3rem;">
+                    <div class="feature-icon" style="color: white;">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3 style="color: white; font-size: 1.8rem; margin-bottom: 1rem;">免费云服务表单</h3>
+                    <p style="font-size: 1.1rem; margin-bottom: 2rem;">
+                        无需自建服务器，注册即送200次API调用额度
+                    </p>
+                    <ul style="list-style: none; padding: 0; margin-bottom: 2rem; text-align: left;">
+                        <li style="margin-bottom: 0.5rem;"><i class="fas fa-check" style="color: #a7f3d0;"></i> 无需安装插件</li>
+                        <li style="margin-bottom: 0.5rem;"><i class="fas fa-check" style="color: #a7f3d0;"></i> 无需自建服务器</li>
+                        <li style="margin-bottom: 0.5rem;"><i class="fas fa-check" style="color: #a7f3d0;"></i> 即开即用</li>
+                        <li style="margin-bottom: 0.5rem;"><i class="fas fa-check" style="color: #a7f3d0;"></i> 高可用性保障</li>
+                    </ul>
+                    <a href="cloud-service.html" class="btn" style="background: white; color: #10b981; width: 100%; text-align: center; font-size: 1.2rem; padding: 15px;">
+                        <i class="fas fa-rocket"></i> 立即注册使用
+                    </a>
+                </div>
+                
+                <!-- Self-hosted Plugin -->
+                <div class="feature-card scroll-animate" style="padding: 3rem;">
+                    <div class="feature-icon">
+                        <i class="fas fa-download"></i>
+                    </div>
+                    <h3 style="font-size: 1.8rem; margin-bottom: 1rem;">开源WordPress插件</h3>
+                    <p style="font-size: 1.1rem; margin-bottom: 2rem;">
+                        适合需要完全控制或大量使用的用户
+                    </p>
+                    <ul style="list-style: none; padding: 0; margin-bottom: 2rem; text-align: left;">
+                        <li style="margin-bottom: 0.5rem;"><i class="fas fa-check" style="color: #10b981;"></i> 完全免费开源</li>
+                        <li style="margin-bottom: 0.5rem;"><i class="fas fa-check" style="color: #10b981;"></i> 完全控制数据</li>
+                        <li style="margin-bottom: 0.5rem;"><i class="fas fa-check" style="color: #10b981;"></i> 无限使用次数</li>
+                        <li style="margin-bottom: 0.5rem;"><i class="fas fa-exclamation-triangle" style="color: #f59e0b;"></i> 需要自建服务器</li>
+                    </ul>
+                    <a href="#download" class="btn btn-primary" style="width: 100%; text-align: center; font-size: 1.2rem; padding: 15px;">
+                        <i class="fas fa-download"></i> 下载插件文件
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Download Section -->
     <section id="download" class="download">
         <div class="container">
-            <h2 class="section-title" style="color: white;">📦 立即下载</h2>
+            <h2 class="section-title" style="color: white;">📦 下载插件文件</h2>
             <div class="download-card scroll-animate">
                 <h3 style="font-size: 2rem; margin-bottom: 1rem;">
-                    <i class="fas fa-gift"></i> 免费开源
+                    <i class="fas fa-gift"></i> 免费开源插件
                 </h3>
                 <p style="font-size: 1.2rem; margin-bottom: 2rem;">
-                    完全免费使用，开源代码，无任何限制
+                    适合需要完全控制或无限使用的用户，完全免费开源
                 </p>
                 <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
                     <a href="universal-form-handler.zip" download class="btn btn-primary" style="font-size: 1.2rem; padding: 15px 40px;">
@@ -604,10 +785,18 @@
                     <a href="contact-form-example.zip" download class="btn btn-secondary" style="font-size: 1.2rem; padding: 15px 40px;">
                         <i class="fas fa-code"></i> 下载示例代码
                     </a>
+                    <a href="docs.html" class="btn btn-secondary" style="font-size: 1.2rem; padding: 15px 40px;">
+                        <i class="fas fa-book"></i> 安装文档
+                    </a>
                 </div>
                 <p style="margin-top: 2rem; opacity: 0.8;">
                     <i class="fas fa-info-circle"></i> 需要配合 SMTP 插件使用，推荐 WP Mail SMTP
                 </p>
+                <div style="margin-top: 2rem; padding: 1rem; background: rgba(255,255,255,0.1); border-radius: 8px;">
+                    <p style="margin: 0; font-size: 1rem;">
+                        <i class="fas fa-lightbulb"></i> <strong>推荐优先使用上方的免费云服务表单，无需安装配置，注册即用！</strong>
+                    </p>
+                </div>
             </div>
         </div>
     </section>
@@ -623,10 +812,11 @@
                 </div>
                 <div class="footer-section">
                     <h3>快速链接</h3>
-                    <a href="#features">功能特性</a>
+                    <a href="cloud-service.html">云服务表单</a>
+                    <a href="#download">插件下载</a>
                     <a href="#how-it-works">使用方法</a>
                     <a href="docs.html">技术文档</a>
-                    <a href="#download">立即下载</a>
+                    <a href="contact.html">联系我们</a>
                 </div>
                 <div class="footer-section">
                     <h3>技术支持</h3>
@@ -636,15 +826,15 @@
                     <a href="docs.html#changelog">更新日志</a>
                 </div>
                 <div class="footer-section">
-                    <h3>适用场景</h3>
-                    <p>• 静态网站表单处理</p>
-                    <p>• 外部网站联系表单</p>
-                    <p>• 第三方页面表单提交</p>
-                    <p>• 任何表单处理需求</p>
+                    <h3>服务选项</h3>
+                    <p>• 免费云服务器（200次额度）</p>
+                    <p>• 免费WordPress插件</p>
+                    <p>• 完整技术文档</p>
+                    <p>• 社区技术支持</p>
                 </div>
             </div>
             <div style="border-top: 1px solid #4a5568; padding-top: 2rem; margin-top: 2rem;">
-                <p>&copy; 2024 JimForm.com - WordPress 通用表单处理器插件</p>
+                <p>&copy; 2025 JimForm.com - WordPress 通用表单处理器插件</p>
                 <p style="margin-top: 0.5rem; opacity: 0.7;">
                     <i class="fas fa-heart" style="color: #e53e3e;"></i> 
                     让表单处理变得简单 • 支持跨域调用 • 完全免费开源
