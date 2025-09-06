@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JimForm - WordPress 通用表单处理器插件</title>
+    <meta name="description" content="革命性的WordPress表单处理插件，无需预设计表单，任何HTML表单都能直接使用，支持跨域调用">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero .subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero .highlight {
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            display: inline-block;
+            margin-bottom: 2rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #667eea;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        /* How it Works */
+        .how-it-works {
+            padding: 80px 0;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 1rem;
+        }
+
+        .step h3 {
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        /* Code Example */
+        .code-example {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .code-container {
+            background: #2d3748;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 2rem;
+            position: relative;
+            overflow-x: auto;
+        }
+
+        .code-container pre {
+            color: #e2e8f0;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .code-header {
+            background: #4a5568;
+            margin: -2rem -2rem 1rem;
+            padding: 1rem 2rem;
+            border-radius: 15px 15px 0 0;
+            color: #e2e8f0;
+            font-weight: 600;
+        }
+
+        /* Comparison */
+        .comparison {
+            padding: 80px 0;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .comparison-card {
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .traditional {
+            background: #fee;
+            border: 2px solid #fca5a5;
+        }
+
+        .jimform {
+            background: #f0fff4;
+            border: 2px solid #68d391;
+        }
+
+        .comparison-card h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .comparison-list {
+            list-style: none;
+            text-align: left;
+        }
+
+        .comparison-list li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .traditional .comparison-list li::before {
+            content: "❌";
+        }
+
+        .jimform .comparison-list li::before {
+            content: "✅";
+        }
+
+        /* Download Section */
+        .download {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .download-card {
+            background: rgba(255,255,255,0.1);
+            padding: 3rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            margin-top: 2rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #2d3748;
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        .footer-section a {
+            color: #cbd5e0;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* Scroll animations */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+
+        .scroll-animate.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <i class="fas fa-paper-plane"></i> JimForm
+            </div>
+            <ul class="nav-links">
+                <li><a href="#features">功能特性</a></li>
+                <li><a href="docs.html"><i class="fas fa-book"></i> 文档</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> 联系</a></li>
+                <li><a href="#download">下载</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="fade-in">
+                <h1><i class="fas fa-magic"></i> JimForm</h1>
+                <p class="subtitle">WordPress 通用表单处理器插件</p>
+                <div class="highlight">
+                    <i class="fas fa-bolt"></i> 无需预设计表单结构，任何HTML表单都能直接使用！
+                </div>
+                <p style="font-size: 1.1rem; margin-bottom: 2rem;">
+                    革命性的表单处理方案 • 支持跨域调用 • 不局限于本站使用 • 任何外部网站都可调用
+                </p>
+                <div class="cta-buttons">
+                    <a href="#download" class="btn btn-primary">
+                        <i class="fas fa-download"></i> 立即下载
+                    </a>
+                    <a href="docs.html" class="btn btn-secondary">
+                        <i class="fas fa-book"></i> 技术文档
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title scroll-animate">🚀 核心优势</h2>
+            <div class="features-grid">
+                <div class="feature-card scroll-animate">
+                    <div class="feature-icon">
+                        <i class="fas fa-magic"></i>
+                    </div>
+                    <h3>零配置表单</h3>
+                    <p>无需预设字段，任何HTML表单直接可用。设计好表单，指向API地址，立即生效！</p>
+                </div>
+                <div class="feature-card scroll-animate">
+                    <div class="feature-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3>跨域支持</h3>
+                    <p>外部网站、静态页面、任何域名都可调用。完美支持Netlify、Vercel、GitHub Pages等。</p>
+                </div>
+                <div class="feature-card scroll-animate">
+                    <div class="feature-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3>智能邮件</h3>
+                    <p>自动将所有表单字段整理成邮件发送，支持表格和简单两种样式，自动检测回复邮箱。</p>
+                </div>
+                <div class="feature-card scroll-animate">
+                    <div class="feature-icon">
+                        <i class="fas fa-plug"></i>
+                    </div>
+                    <h3>即插即用</h3>
+                    <p>安装后立即可用，无需复杂配置。配合SMTP插件，几分钟内完成部署。</p>
+                </div>
+                <div class="feature-card scroll-animate">
+                    <div class="feature-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>灵活定制</h3>
+                    <p>支持自定义邮件模板、成功提示、错误信息，满足不同业务需求。</p>
+                </div>
+                <div class="feature-card scroll-animate">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>安全可靠</h3>
+                    <p>支持CORS域名限制，防火墙白名单，数据验证和清理，确保安全性。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How it Works -->
+    <section id="how-it-works" class="how-it-works">
+        <div class="container">
+            <h2 class="section-title scroll-animate">📋 使用方法（超简单）</h2>
+            <div class="steps">
+                <div class="step scroll-animate">
+                    <div class="step-number">1</div>
+                    <h3>安装插件</h3>
+                    <p>上传插件文件到WordPress，激活插件，配置接收邮箱和SMTP插件。</p>
+                </div>
+                <div class="step scroll-animate">
+                    <div class="step-number">2</div>
+                    <h3>设计表单</h3>
+                    <p>使用任意HTML表单，无需预设字段结构，想要什么字段就设计什么字段。</p>
+                </div>
+                <div class="step scroll-animate">
+                    <div class="step-number">3</div>
+                    <h3>指向API</h3>
+                    <p>将表单action设置为API地址，格式：/wp-json/my-forms/v1/send/表单标识</p>
+                </div>
+                <div class="step scroll-animate">
+                    <div class="step-number">4</div>
+                    <h3>立即生效</h3>
+                    <p>所有表单字段自动通过邮件发送，支持重定向，完全自动化处理。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Code Example -->
+    <section id="example" class="code-example">
+        <div class="container">
+            <h2 class="section-title scroll-animate">💻 代码示例</h2>
+            <p style="text-align: center; font-size: 1.1rem; margin-bottom: 2rem;">
+                任何HTML表单都可以直接使用，无需修改字段结构
+            </p>
+            <div class="code-container scroll-animate">
+                <div class="code-header">
+                    <i class="fas fa-code"></i> HTML 表单示例
+                </div>
+                <pre><code>&lt;!-- 基础联系表单 --&gt;
+&lt;form action="https://your-domain.com/wp-json/my-forms/v1/send/contact-form" method="POST"&gt;
+    &lt;input type="text" name="姓名" required&gt;
+    &lt;input type="email" name="email" required&gt;
+    &lt;input type="tel" name="电话"&gt;
+    &lt;select name="咨询类型"&gt;
+        &lt;option value="产品咨询"&gt;产品咨询&lt;/option&gt;
+        &lt;option value="技术支持"&gt;技术支持&lt;/option&gt;
+    &lt;/select&gt;
+    &lt;textarea name="留言内容" required&gt;&lt;/textarea&gt;
+    
+    &lt;!-- 可选：提交成功后重定向 --&gt;
+    &lt;input type="hidden" name="_redirect_url" value="https://example.com/thank-you"&gt;
+    
+    &lt;button type="submit"&gt;提交&lt;/button&gt;
+&lt;/form&gt;
+
+&lt;!-- 复杂表单示例 --&gt;
+&lt;form action="https://your-domain.com/wp-json/my-forms/v1/send/registration" method="POST"&gt;
+    &lt;input type="text" name="公司名称"&gt;
+    &lt;input type="text" name="联系人"&gt;
+    &lt;input type="email" name="email"&gt;
+    &lt;input type="text" name="职位"&gt;
+    &lt;input type="text" name="行业"&gt;
+    &lt;textarea name="需求描述"&gt;&lt;/textarea&gt;
+    &lt;input type="checkbox" name="同意条款" value="是"&gt;
+    
+    &lt;button type="submit"&gt;注册&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+            </div>
+            <p style="text-align: center; margin-top: 2rem; font-size: 1.1rem; color: #667eea; font-weight: 600;">
+                <i class="fas fa-magic"></i> 所有字段都会自动发送到邮箱，无需预先配置！
+            </p>
+        </div>
+    </section>
+
+    <!-- Comparison -->
+    <section class="comparison">
+        <div class="container">
+            <h2 class="section-title scroll-animate">⚡ 为什么选择 JimForm？</h2>
+            <div class="comparison-grid">
+                <div class="comparison-card traditional scroll-animate">
+                    <h3><i class="fas fa-times-circle"></i> 传统表单处理</h3>
+                    <ul class="comparison-list">
+                        <li>需要预先设计表单结构</li>
+                        <li>修改表单需要重新配置</li>
+                        <li>静态网站无法处理表单</li>
+                        <li>跨域调用复杂</li>
+                        <li>需要编写后端代码</li>
+                        <li>配置复杂，学习成本高</li>
+                    </ul>
+                </div>
+                <div class="comparison-card jimform scroll-animate">
+                    <h3><i class="fas fa-check-circle"></i> JimForm 解决方案</h3>
+                    <ul class="comparison-list">
+                        <li>零配置 - 任何表单直接可用</li>
+                        <li>动态适应 - 自动处理任意字段</li>
+                        <li>完美支持静态网站</li>
+                        <li>跨域友好 - 支持外部调用</li>
+                        <li>即插即用 - 无需编程</li>
+                        <li>安装后立即可用</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section id="download" class="download">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">📦 立即下载</h2>
+            <div class="download-card scroll-animate">
+                <h3 style="font-size: 2rem; margin-bottom: 1rem;">
+                    <i class="fas fa-gift"></i> 免费开源
+                </h3>
+                <p style="font-size: 1.2rem; margin-bottom: 2rem;">
+                    完全免费使用，开源代码，无任何限制
+                </p>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="universal-form-handler.php" download class="btn btn-primary" style="font-size: 1.2rem; padding: 15px 40px;">
+                        <i class="fas fa-download"></i> 下载插件文件
+                    </a>
+                    <a href="form-example.html" download class="btn btn-secondary" style="font-size: 1.2rem; padding: 15px 40px;">
+                        <i class="fas fa-code"></i> 下载示例代码
+                    </a>
+                </div>
+                <p style="margin-top: 2rem; opacity: 0.8;">
+                    <i class="fas fa-info-circle"></i> 需要配合 SMTP 插件使用，推荐 WP Mail SMTP
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-paper-plane"></i> JimForm</h3>
+                    <p>革命性的WordPress表单处理插件</p>
+                    <p>让表单处理变得简单高效</p>
+                </div>
+                <div class="footer-section">
+                    <h3>快速链接</h3>
+                    <a href="#features">功能特性</a>
+                    <a href="#how-it-works">使用方法</a>
+                    <a href="docs.html">技术文档</a>
+                    <a href="#download">立即下载</a>
+                </div>
+                <div class="footer-section">
+                    <h3>技术支持</h3>
+                    <a href="docs.html">完整文档</a>
+                    <a href="docs.html#troubleshooting">故障排除</a>
+                    <a href="contact.html">联系我们</a>
+                    <a href="docs.html#changelog">更新日志</a>
+                </div>
+                <div class="footer-section">
+                    <h3>适用场景</h3>
+                    <p>• 静态网站表单处理</p>
+                    <p>• 外部网站联系表单</p>
+                    <p>• 第三方页面表单提交</p>
+                    <p>• 任何表单处理需求</p>
+                </div>
+            </div>
+            <div style="border-top: 1px solid #4a5568; padding-top: 2rem; margin-top: 2rem;">
+                <p>&copy; 2024 JimForm.com - WordPress 通用表单处理器插件</p>
+                <p style="margin-top: 0.5rem; opacity: 0.7;">
+                    <i class="fas fa-heart" style="color: #e53e3e;"></i> 
+                    让表单处理变得简单 • 支持跨域调用 • 完全免费开源
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-animate').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Header background on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(102, 126, 234, 0.95)';
+                header.style.backdropFilter = 'blur(10px)';
+            } else {
+                header.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+                header.style.backdropFilter = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

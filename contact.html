@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>联系我们 - JimForm WordPress 通用表单处理器</title>
+    <meta name="description" content="联系JimForm团队，获取技术支持、商务合作或产品咨询">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 20px 40px;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Contact Grid */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        /* Contact Info */
+        .contact-info {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .contact-info h2 {
+            color: #667eea;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+            color: #667eea;
+            margin-top: 0.2rem;
+        }
+
+        .contact-details h3 {
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-details p {
+            color: #666;
+            margin: 0;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .contact-form h2 {
+            color: #667eea;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .required {
+            color: #e74c3c;
+        }
+
+        /* Submit Button */
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .submit-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Status Messages */
+        .status-message {
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            display: none;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
+        }
+
+        .status-success {
+            background: #d1fae5;
+            color: #065f46;
+            border: 1px solid #10b981;
+        }
+
+        .status-error {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #ef4444;
+        }
+
+        .status-loading {
+            background: #dbeafe;
+            color: #1e40af;
+            border: 1px solid #3b82f6;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            margin-top: 4rem;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .faq-section h2 {
+            color: #667eea;
+            margin-bottom: 2rem;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .faq-item {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .faq-item h3 {
+            color: #333;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .faq-item p {
+            color: #666;
+            margin: 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .container {
+                padding: 80px 15px 40px;
+            }
+
+            .contact-form,
+            .contact-info {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Loading Animation */
+        .loading-spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ffffff;
+            border-top: 2px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            padding: 2rem 0;
+            margin-top: 4rem;
+            text-align: center;
+        }
+
+        .footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" class="logo">
+                <i class="fas fa-paper-plane"></i> JimForm
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fas fa-home"></i> 首页</a></li>
+                <li><a href="docs.html"><i class="fas fa-book"></i> 文档</a></li>
+                <li><a href="contact.html" class="active"><i class="fas fa-envelope"></i> 联系我们</a></li>
+                <li><a href="index.html#download"><i class="fas fa-download"></i> 下载</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero">
+            <h1>
+                <i class="fas fa-comments"></i>
+                联系我们
+            </h1>
+            <p>有任何问题或建议？我们很乐意为您提供帮助。无论是技术支持、商务合作还是产品咨询，请随时与我们联系。</p>
+        </div>
+
+        <!-- Contact Grid -->
+        <div class="contact-grid">
+            <!-- Contact Info -->
+            <div class="contact-info">
+                <h2>
+                    <i class="fas fa-info-circle"></i>
+                    联系方式
+                </h2>
+
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h3>邮箱支持</h3>
+                        <p>我们会在24小时内回复您的邮件</p>
+                        <p style="color: #667eea; font-weight: 600;">通过右侧表单发送</p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h3>响应时间</h3>
+                        <p>技术支持：24小时内</p>
+                        <p>商务咨询：48小时内</p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h3>服务范围</h3>
+                        <p>全球用户支持</p>
+                        <p>中文、英文服务</p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h3>隐私保护</h3>
+                        <p>您的信息将被严格保密</p>
+                        <p>仅用于回复您的咨询</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="contact-form">
+                <h2>
+                    <i class="fas fa-paper-plane"></i>
+                    发送消息
+                </h2>
+
+                <div id="status-message" class="status-message"></div>
+
+                <form id="contact-form">
+                    <div class="form-group">
+                        <label for="name">姓名 <span class="required">*</span></label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">邮箱地址 <span class="required">*</span></label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="company">公司/组织</label>
+                        <input type="text" id="company" name="company">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">咨询类型 <span class="required">*</span></label>
+                        <select id="subject" name="subject" required>
+                            <option value="">请选择咨询类型</option>
+                            <option value="技术支持">技术支持</option>
+                            <option value="产品咨询">产品咨询</option>
+                            <option value="商务合作">商务合作</option>
+                            <option value="Bug反馈">Bug反馈</option>
+                            <option value="功能建议">功能建议</option>
+                            <option value="其他">其他</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">详细描述 <span class="required">*</span></label>
+                        <textarea id="message" name="message" required placeholder="请详细描述您的问题或需求，我们会尽快为您解答..."></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn" id="submit-btn">
+                        <i class="fas fa-paper-plane"></i>
+                        发送消息
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="faq-section">
+            <h2>
+                <i class="fas fa-question-circle"></i>
+                常见问题
+            </h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3><i class="fas fa-download"></i> 如何下载插件？</h3>
+                    <p>访问我们的<a href="index.html#download" style="color: #667eea;">下载页面</a>，直接下载插件文件，然后上传到WordPress后台激活即可。</p>
+                </div>
+                <div class="faq-item">
+                    <h3><i class="fas fa-cogs"></i> 需要编程知识吗？</h3>
+                    <p>不需要！JimForm的核心优势就是零配置，任何HTML表单都能直接使用，无需编程基础。</p>
+                </div>
+                <div class="faq-item">
+                    <h3><i class="fas fa-globe"></i> 支持跨域调用吗？</h3>
+                    <p>完全支持！静态网站、外部域名、第三方页面都可以调用我们的API处理表单。</p>
+                </div>
+                <div class="faq-item">
+                    <h3><i class="fas fa-envelope"></i> 邮件发送失败怎么办？</h3>
+                    <p>请确保安装了SMTP插件（如WP Mail SMTP），并查看我们的<a href="docs.html#troubleshooting" style="color: #667eea;">故障排除指南</a>。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 JimForm.com - WordPress 通用表单处理器插件</p>
+            <p style="margin-top: 0.5rem;">
+                <a href="index.html">首页</a> • 
+                <a href="docs.html">技术文档</a> • 
+                <a href="contact.html">联系我们</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // 动态生成Formspree URL以保护密钥
+        function getFormspreeUrl() {
+            // 将密钥分段存储，运行时组合
+            const parts = ['https://formspree.io/f/', 'xrbar', 'zyy'];
+            return parts.join('');
+        }
+
+        // 表单提交处理
+        document.getElementById('contact-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const form = e.target;
+            const submitBtn = document.getElementById('submit-btn');
+            const statusMessage = document.getElementById('status-message');
+            
+            // 显示加载状态
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<div class="loading-spinner"></div> 发送中...';
+            
+            showStatus('loading', '正在发送消息，请稍候...');
+            
+            try {
+                const formData = new FormData(form);
+                
+                // 动态获取Formspree URL
+                const formspreeUrl = getFormspreeUrl();
+                
+                const response = await fetch(formspreeUrl, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    showStatus('success', '消息发送成功！我们会在24小时内回复您。');
+                    form.reset();
+                } else {
+                    const data = await response.json();
+                    if (data.errors) {
+                        showStatus('error', '发送失败：' + data.errors.map(error => error.message).join(', '));
+                    } else {
+                        showStatus('error', '发送失败，请稍后重试或直接发送邮件给我们。');
+                    }
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showStatus('error', '网络错误，请检查网络连接后重试。');
+            } finally {
+                // 恢复按钮状态
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> 发送消息';
+            }
+        });
+        
+        // 显示状态消息
+        function showStatus(type, message) {
+            const statusMessage = document.getElementById('status-message');
+            statusMessage.className = `status-message status-${type}`;
+            
+            let icon = '';
+            switch(type) {
+                case 'success':
+                    icon = '<i class="fas fa-check-circle"></i>';
+                    break;
+                case 'error':
+                    icon = '<i class="fas fa-exclamation-circle"></i>';
+                    break;
+                case 'loading':
+                    icon = '<i class="fas fa-spinner fa-spin"></i>';
+                    break;
+            }
+            
+            statusMessage.innerHTML = icon + ' ' + message;
+            statusMessage.style.display = 'flex';
+            
+            // 成功或错误消息5秒后自动隐藏
+            if (type !== 'loading') {
+                setTimeout(() => {
+                    statusMessage.style.display = 'none';
+                }, 5000);
+            }
+        }
+        
+        // 表单验证增强
+        const form = document.getElementById('contact-form');
+        const inputs = form.querySelectorAll('input[required], textarea[required], select[required]');
+        
+        inputs.forEach(input => {
+            input.addEventListener('blur', function() {
+                if (!this.value.trim()) {
+                    this.style.borderColor = '#e74c3c';
+                } else {
+                    this.style.borderColor = '#10b981';
+                }
+            });
+            
+            input.addEventListener('input', function() {
+                if (this.value.trim()) {
+                    this.style.borderColor = '#10b981';
+                }
+            });
+        });
+        
+        // 邮箱格式验证
+        document.getElementById('email').addEventListener('blur', function() {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (this.value && !emailRegex.test(this.value)) {
+                this.style.borderColor = '#e74c3c';
+                showStatus('error', '请输入有效的邮箱地址');
+            } else if (this.value) {
+                this.style.borderColor = '#10b981';
+            }
+        });
+    </script>
+</body>
+</html>
