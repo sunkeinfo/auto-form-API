@@ -1,0 +1,23 @@
+HTML 表单示例代码 - 文件清单
+
+需要打包到 contact-form-example.zip 的文件：
+1. form-example.html - 完整的HTML表单示例
+2. contact.html - 联系我们页面示例（使用Formspree）
+3. simple-form.html - 简化版表单示例
+
+使用说明：
+1. 下载 contact-form-example.zip
+2. 解压缩文件
+3. 修改表单中的 action 地址为您的 WordPress 网站API地址
+4. 格式：https://your-domain.com/wp-json/my-forms/v1/send/form-key
+5. 上传到您的网站或静态托管平台
+
+示例文件说明：
+- form-example.html: 包含完整样式和JavaScript的表单示例
+- contact.html: 专业的联系我们页面模板
+- simple-form.html: 最简化的表单代码，便于集成
+
+注意事项：
+- 确保 WordPress 插件已正确安装和配置
+- 表单字段可以任意修改，无需预先配置
+- 支持跨域调用，适用于静态网站
