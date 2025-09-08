@@ -379,7 +379,7 @@
                     <h3 style="margin-bottom: 2rem;">
                         <i class="fas fa-user-plus"></i> 快速注册
                     </h3>
-                    <form action="https://api.jimform.com/register" method="POST" style="max-width: 500px; margin: 0 auto;">
+                    <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST" style="max-width: 500px; margin: 0 auto;">
                         <div style="margin-bottom: 1rem;">
                             <input type="email" name="email" placeholder="请输入您的邮箱地址" required 
                                    style="width: 100%; padding: 12px; border: 2px solid #e9ecef; border-radius: 8px; font-size: 1rem;">
@@ -404,12 +404,17 @@
                                 我同意 <a href="#" style="color: #10b981;">服务条款</a> 和 <a href="#" style="color: #10b981;">隐私政策</a>
                             </label>
                         </div>
+                        <input type="hidden" name="_subject" value="JimForm 云服务表单注册申请">
+                        <input type="hidden" name="_next" value="https://jimform.com/thank-you.html">
                         <button type="submit" class="btn btn-primary" style="width: 100%; font-size: 1.2rem; padding: 15px; background: #10b981; color: white;">
                             <i class="fas fa-rocket"></i> 立即注册获取API密钥
                         </button>
                     </form>
                     <p style="margin-top: 1.5rem; color: #666; font-size: 0.9rem;">
-                        <i class="fas fa-info-circle"></i> 注册后将立即发送API密钥和使用文档到您的邮箱
+                        <i class="fas fa-info-circle"></i> 注册后将在24小时内处理申请，并发送API密钥和使用文档到您的邮箱
+                    </p>
+                    <p style="margin-top: 0.5rem; color: #999; font-size: 0.8rem;">
+                        <i class="fas fa-cog"></i> 注册表单由 Formspree 提供技术支持
                     </p>
                 </div>
             </div>
