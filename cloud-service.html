@@ -379,17 +379,23 @@
                     <h3 style="margin-bottom: 2rem;">
                         <i class="fas fa-user-plus"></i> 快速注册
                     </h3>
-                    <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST" style="max-width: 500px; margin: 0 auto;">
+                    <form id="registerForm" style="max-width: 500px; margin: 0 auto;">
+                        <!-- 蜂蜜罐字段 -->
+                        <div style="position: absolute; left: -9999px; opacity: 0;">
+                            <input type="text" id="website" placeholder="Website" tabindex="-1" autocomplete="off">
+                            <input type="url" id="url" placeholder="URL" tabindex="-1" autocomplete="off">
+                        </div>
+                        
                         <div style="margin-bottom: 1rem;">
-                            <input type="email" name="email" placeholder="请输入您的邮箱地址" required 
+                            <input type="email" id="email" placeholder="请输入您的邮箱地址" required 
                                    style="width: 100%; padding: 12px; border: 2px solid #e9ecef; border-radius: 8px; font-size: 1rem;">
                         </div>
                         <div style="margin-bottom: 1rem;">
-                            <input type="text" name="name" placeholder="您的姓名或公司名称" required 
+                            <input type="text" id="name" placeholder="您的姓名或公司名称" required 
                                    style="width: 100%; padding: 12px; border: 2px solid #e9ecef; border-radius: 8px; font-size: 1rem;">
                         </div>
                         <div style="margin-bottom: 1rem;">
-                            <select name="usage" required 
+                            <select id="usage" required 
                                     style="width: 100%; padding: 12px; border: 2px solid #e9ecef; border-radius: 8px; font-size: 1rem;">
                                 <option value="">请选择使用场景</option>
                                 <option value="静态网站">静态网站表单处理</option>
@@ -400,15 +406,59 @@
                         </div>
                         <div style="margin-bottom: 2rem;">
                             <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; color: #666;">
-                                <input type="checkbox" name="agree" required>
+                                <input type="checkbox" id="agree" required>
                                 我同意 <a href="#" style="color: #10b981;">服务条款</a> 和 <a href="#" style="color: #10b981;">隐私政策</a>
                             </label>
                         </div>
-                        <input type="hidden" name="_subject" value="JimForm 云服务表单注册申请">
-                        <input type="hidden" name="_next" value="https://jimform.com/thank-you.html">
+
                         <button type="submit" class="btn btn-primary" style="width: 100%; font-size: 1.2rem; padding: 15px; background: #10b981; color: white;">
                             <i class="fas fa-rocket"></i> 立即注册获取API密钥
                         </button>
+                        
+                        <script>
+                        document.getElementById('registerForm').addEventListener('submit', function(e) {
+                            e.preventDefault();
+                            
+                            // 蜂蜜罐检测
+                            if (document.getElementById('website').value || document.getElementById('url').value) {
+                                window.location.href = 'thank-you.html';
+                                return;
+                            }
+                            
+                            // 获取表单数据
+                            const formData = {
+                                email: document.getElementById('email').value,
+                                name: document.getElementById('name').value,
+                                usage: document.getElementById('usage').value,
+                                _subject: 'JimForm 云服务表单注册申请',
+                                _replyto: document.getElementById('email').value
+                            };
+                            
+                            // 动态构建 API URL
+                            const apiKey = atob('eHJiYXJ6eXk='); // base64编码的 xrbarzyy
+                            const apiUrl = 'https://formspree.io/f/' + apiKey;
+                            
+                            // 发送请求
+                            fetch(apiUrl, {
+                                method: 'POST',
+                                headers: {
+                                    'Accept': 'application/json',
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify(formData)
+                            })
+                            .then(response => {
+                                if (response.ok) {
+                                    window.location.href = 'thank-you.html';
+                                } else {
+                                    alert('注册失败，请稍后重试');
+                                }
+                            })
+                            .catch(error => {
+                                alert('网络错误，请稍后重试');
+                            });
+                        });
+                        </script>
                     </form>
                     <p style="margin-top: 1.5rem; color: #666; font-size: 0.9rem;">
                         <i class="fas fa-info-circle"></i> 注册后将在24小时内处理申请，并发送API密钥和使用文档到您的邮箱
